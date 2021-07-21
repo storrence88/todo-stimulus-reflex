@@ -1,0 +1,16 @@
+<% @lists.each do |list| %>
+  <div class="row justify-content-center my-3">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header"><%= list.name %></div>
+        <div class="card-body p-0">
+          <div class="list-group list-group-flush">
+            <% list.tasks.each do |task| %>
+              <div class="list-group-item"><%= task.name %></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
