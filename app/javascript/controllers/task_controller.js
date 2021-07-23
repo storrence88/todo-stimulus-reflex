@@ -6,4 +6,12 @@ export default class extends Controller {
     console.log("Task Controller connected!");
     StimulusReflex.register(this);
   }
+
+  destroy(event) {
+    const confirmation = confirm('Are you sure?');
+    
+    if (confirmation) {
+      this.stimulate('TaskReflex#destroy', event.currentTarget);
+    }
+  }
 }
