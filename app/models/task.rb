@@ -2,9 +2,10 @@
 
 class Task < ApplicationRecord
   belongs_to :list
-  validates :name, presence: true
 
   scope :incomplete_first, -> { order(completed_at: :desc) }
+
+  validates :name, presence: true
 
   def complete?
     completed_at.present?

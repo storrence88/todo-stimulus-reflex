@@ -48,3 +48,5 @@ Style/WordArray:
   Enabled: false
 Metrics/PerceivedComplexity:
   Enabled: false
+MemoizedInstanceVariableName:
+  Enabled: false
