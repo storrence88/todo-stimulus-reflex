@@ -7,6 +7,8 @@ class Task < ApplicationRecord
   belongs_to :creator, class_name: 'User'
   belongs_to :list
 
+  delegate :name, to: :assignee, prefix: true, allow_nil: true
+
   scope :incomplete_first, -> { order(completed_at: :desc) }
 
   validates :name, presence: true
