@@ -2,9 +2,14 @@
 
 class TaskReflex < StimulusReflex::Reflex
   before_reflex :find_task
+  delegate :current_user, to: :connection
 
   def toggle
-    @task.update(completed_at: element.checked ? Time.current : nil)
+    if element.checked
+      @task.update(completed_at: Time.current, completer: current_user)
+    else
+      @task.update(completed_at: nil, completer: nil)
+    end
   end
 
   def destroy
