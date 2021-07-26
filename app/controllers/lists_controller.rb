@@ -9,8 +9,9 @@ class ListsController < ApplicationController
   end
 
   def new
-    cable_ready[ListsChannel].console_log(
-      message: 'Hello from CableReady!'
+    cable_ready[ListsChannel].insert_adjacent_html(
+      selector: '#lists',
+      html: render_to_string(partial: 'lists/form', locals: { list: List.new })
     )
     cable_ready.broadcast_to current_user
   end
