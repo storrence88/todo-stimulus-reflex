@@ -18,6 +18,7 @@ class TaskReflex < StimulusReflex::Reflex
 
   def reorder(position)
     @task.insert_at(position)
+    morph :nothing
   end
 
   def assign
