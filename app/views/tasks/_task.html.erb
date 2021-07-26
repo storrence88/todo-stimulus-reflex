@@ -16,7 +16,7 @@
     </label>
   </div>
   <div class='collapse mt-2 no-transition' id='collapse-<%= task.id %>' data-task-target='collapse'>
-    <%= bootstrap_form_with model: task, url: '', layout: :inline, html: { class: 'mb-2' } do |f| %>
+    <%= bootstrap_form_with model: task, url: '', layout: :inline, html: { class: 'mb-2' }, data: { reflex: 'submit->TaskReflex#update', id: task.id } do |f| %>
       <%= f.text_field :name, skip_label: true, class: 'mr-2', id: "task_name_#{task.id}" %>
       <%= f.primary 'Update' %>
     <% end %>
