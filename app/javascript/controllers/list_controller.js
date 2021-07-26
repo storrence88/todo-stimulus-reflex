@@ -8,7 +8,7 @@ export default class extends Controller {
   connect() {
     StimulusReflex.register(this);
     Sortable.create(this.tasksTarget, {
-      filter: '.completed',
+      handle: '.incomplete',
       onEnd: (event) => this.reorder(event)
     });
   }
