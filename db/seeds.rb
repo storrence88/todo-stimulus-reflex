@@ -18,12 +18,20 @@ end
 
 list = List.create(name: Faker::Hipster.sentence)
 
-5.times do
+tasks = 5.times.map do
   completed = Faker::Boolean.boolean(true_ratio: 0.2)
   list.tasks.create(
     creator: users.sample,
     name: Faker::Hipster.sentence,
     completed_at: completed ? Time.current : nil,
     completer: completed ? users.sample : nil
+  )
+end
+
+20.times do
+  Comment.create(
+    user: users.sample,
+    commentable: tasks.sample,
+    body: Faker::Hipster.paragraph
   )
 end
