@@ -16,7 +16,6 @@ class CommentsController < ApplicationController
     end
 
     cable_ready.broadcast_to(@task)
-
   end
 
   private
