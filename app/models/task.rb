@@ -8,7 +8,7 @@ class Task < ApplicationRecord
   belongs_to :creator, class_name: 'User'
   belongs_to :list
 
-  has_many :comments, as: :commentable, dependent: :destroy
+  has_many :comments, -> { order(created_at: :asc) }, as: :commentable, dependent: :destroy
 
   delegate :name, to: :assignee, prefix: true, allow_nil: true
   delegate :name, to: :completer, prefix: true, allow_nil: true
