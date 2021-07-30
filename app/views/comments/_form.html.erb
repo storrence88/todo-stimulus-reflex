@@ -2,7 +2,7 @@
   <div class="card-header">New Comment</div>
   <div class="card-body">
     <%= bootstrap_form_with model: new_comment, url: list_task_comments_path(@task.list, @task), local: false do |f| %>
-      <%= f.text_area :body, skip_label: true %>
+      <%= f.text_area :body, skip_label: true, id: 'comment_body' %>
       <%= f.primary %>
     <% end %>
   </div>
