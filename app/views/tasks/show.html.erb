@@ -13,7 +13,7 @@
 <hr>
 
 <h4 class='mb-4'>Comments</h4>
-<div id="comments">
+<div id="comments" data-controller='comments' data-comments-task-id='<%= @task.id %>'>
   <%= render @task.comments %>
 </div>
 
