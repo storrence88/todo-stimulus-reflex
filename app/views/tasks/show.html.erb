@@ -17,12 +17,4 @@
   <%= render @task.comments %>
 </div>
 
-<div class="card mb-4">
-  <div class="card-header">New Comment</div>
-  <div class="card-body">
-    <%= bootstrap_form_with model: @new_comment, url: list_task_comments_path(@task.list, @task), local: false do |f| %>
-      <%= f.text_area :body, skip_label: true %>
-      <%= f.primary %>
-    <% end %>
-  </div>
-</div>
+<%= render 'comments/form', new_comment: @new_comment %>
