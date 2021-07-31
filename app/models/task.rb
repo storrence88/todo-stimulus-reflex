@@ -13,7 +13,8 @@ class Task < ApplicationRecord
   delegate :name, to: :assignee, prefix: true, allow_nil: true
   delegate :name, to: :completer, prefix: true, allow_nil: true
 
-  scope :incomplete_first, -> { order(completed_at: :desc) }
+  scope :complete, -> { where.not(completed_at: nil).order(updated_at: :asc) }
+  scope :incomplete, -> { where(completed_at: nil).order(position: :asc) }
 
   validates :name, presence: true
 
