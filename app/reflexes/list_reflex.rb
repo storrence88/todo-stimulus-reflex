@@ -8,11 +8,14 @@ class ListReflex < StimulusReflex::Reflex
     @new_task = list.tasks.create(task_params.merge(creator: current_user))
 
     if @new_task.persisted?
-      cable_ready[ListChannel].insert_adjacent_html(
-        selector: "#list_#{list.id} #incomplete-tasks",
-        position: 'beforeend',
-        html: ApplicationController.render(@new_task)
-      ).broadcast_to(list)
+      cable_ready[ListChannel]
+        .insert_adjacent_html(
+          selector: "#list_#{list.id} #incomplete-tasks",
+          position: 'beforeend',
+          html: ApplicationController.render(@new_task)
+        )
+        .add_css_class(selector: "#list_#{list.id} #no-tasks", name: 'd-none')
+        .broadcast_to(list)
     end
 
     @new_task = Task.new
