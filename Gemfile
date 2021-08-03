@@ -37,6 +37,9 @@ group :development, :test do
   gem 'rubocop-rails', require: false
   gem 'pry-rails'
   gem 'faker'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'stimulus_reflex_testing'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
