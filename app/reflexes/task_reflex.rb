@@ -14,7 +14,7 @@ class TaskReflex < StimulusReflex::Reflex
     cable_ready[ListChannel]
       .remove(selector: "#task_#{@task.id}")
       .insert_adjacent_html(
-        selector: "#list_#{@task.list_id} #{element.checked ? '#complete-tasks' : '#incomplete-tasks' }",
+        selector: "#list_#{@task.list_id} #{element.checked ? '#complete-tasks' : '#incomplete-tasks'}",
         position: 'beforeend',
         html: ApplicationController.render(@task)
       ).broadcast_to(@task.list)

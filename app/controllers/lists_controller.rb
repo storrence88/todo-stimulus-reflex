@@ -10,8 +10,8 @@ class ListsController < ApplicationController
 
   def new
     cable_ready[ListsChannel].insert_adjacent_html(
-      selector: "#lists",
-      html: render_to_string(partial: "lists/form", locals: { list: List.new })
+      selector: '#lists',
+      html: render_to_string(partial: 'lists/form', locals: { list: List.new })
     )
     cable_ready.broadcast_to(current_user)
   end
@@ -24,14 +24,14 @@ class ListsController < ApplicationController
         selector: "#list-#{params.dig(:list, :client_id)}"
       ).broadcast_to(current_user)
       cable_ready[TeamChannel].insert_adjacent_html(
-        selector: "#lists",
-        position: "beforeend",
+        selector: '#lists',
+        position: 'beforeend',
         html: render_to_string(@list, assigns: { new_task: Task.new })
       ).broadcast_to(current_user.team)
     else
       cable_ready[ListsChannel].morph(
         selector: "#list-#{params.dig(:list, :client_id)}",
-        html: render_to_string(partial: "lists/form", locals: { list: @list })
+        html: render_to_string(partial: 'lists/form', locals: { list: @list })
       )
       cable_ready.broadcast_to(current_user)
     end
