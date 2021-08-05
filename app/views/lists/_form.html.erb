@@ -3,7 +3,7 @@
     New List
   </div>
   <div class="card-body">
-    <%= bootstrap_form_with model: list do |f| %>
+    <%= bootstrap_form_with model: list, remote: true do |f| %>
       <%= f.hidden_field :client_id %>
       <%= f.text_field :name %>
       <%= f.primary %>
