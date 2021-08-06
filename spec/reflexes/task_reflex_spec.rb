@@ -3,7 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe TaskReflex, type: :reflex do
-  let(:reflex) { build_reflex(connection: { current_user: user }) }
+  let(:reflex) { build_reflex(params: params, connection: { current_user: user }) }
+  let(:params) { {} }
   let(:user) { FactoryBot.create :user }
 
   describe '#toggle' do
@@ -90,6 +91,22 @@ RSpec.describe TaskReflex, type: :reflex do
       reflex.element.dataset.id = task.id
       expect { subject }.to change { task.reload.position }.from(10).to(5)
       expect(subject).to morph(:nothing)
+    end
+  end
+
+  describe '#update' do
+    subject { reflex.run(:update) }
+
+    let(:task) { FactoryBot.create(:task) }
+    let(:params) { { task: { name: 'New task name' } } }
+
+    before do
+      reflex.element.dataset.id = task.id
+    end
+
+    it 'updates a task' do
+      expect { subject }.to change { task.reload.name }.to('New task name')
+      expect(subject).to morph("#task_#{task.id}").with(ApplicationController.render(task))
     end
   end
 end
