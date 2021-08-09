@@ -8,6 +8,10 @@ class User < ApplicationRecord
 
   belongs_to :team
 
+  accepts_nested_attributes_for :team
+
+  validates :first_name, :last_name, presence: true
+
   def name
     "#{first_name} #{last_name}"
   end
